@@ -34,7 +34,6 @@ import android.view.Display.HdrCapabilities;
 
 import org.lineageos.settings.doze.DozeUtils;
 import org.lineageos.settings.thermal.ThermalUtils;
-import org.lineageos.settings.thermal.ThermalTileService;
 import org.lineageos.settings.refreshrate.RefreshUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
@@ -80,7 +79,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         DozeUtils.onBootCompleted(context);
 
         // Start Thermal Management Services
-        ThermalUtils.startService(context);
+        ThermalUtils.Companion.getInstance(context).startService();
 
         // Start Refresh Rate Services
         RefreshUtils.startService(context);
