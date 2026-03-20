@@ -273,7 +273,7 @@
       "Path": "/proc/sys/walt/sched_min_task_util_for_boost",
       "Values": [
         "0",
-        "30",
+        "25",
         "51"
       ],
       "ResetOnInit": true
@@ -292,7 +292,7 @@
       "Path": "/proc/sys/walt/sched_min_task_util_for_uclamp",
       "Values": [
         "0",
-        "40",
+        "35",
         "51"
       ],
       "ResetOnInit": true
@@ -532,7 +532,7 @@
       "PowerHint": "INTERACTION",
       "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "439000000"
+      "Value": "364000000"
     },
     {
       "PowerHint": "INTERACTION",
@@ -543,8 +543,8 @@
     {
       "PowerHint": "INTERACTION",
       "Node": "UclampTAMin",
-      "Duration": 3500,
-      "Value": "50"
+      "Duration": 2000,
+      "Value": "40"
     },
     {
       "PowerHint": "INTERACTION",
@@ -574,7 +574,7 @@
       "PowerHint": "INTERACTION",
       "Node": "SchedMinTaskUtilForBoost",
       "Duration": 200,
-      "Value": "30"
+      "Value": "25"
     },
     {
       "PowerHint": "INTERACTION",
@@ -586,7 +586,7 @@
       "PowerHint": "INTERACTION",
       "Node": "SchedMinTaskUtilForUclamp",
       "Duration": 200,
-      "Value": "40"
+      "Value": "35"
     },
     {
       "PowerHint": "INTERACTION",
@@ -645,13 +645,13 @@
     {
       "PowerHint": "INTERACTION",
       "Node": "SleepDisabled",
-      "Duration": 300,
+      "Duration": 150,
       "Value": "1"
     },
     {
       "PowerHint": "INTERACTION",
       "Node": "PredictionDisabled",
-      "Duration": 300,
+      "Duration": 150,
       "Value": "1"
     },
     {
