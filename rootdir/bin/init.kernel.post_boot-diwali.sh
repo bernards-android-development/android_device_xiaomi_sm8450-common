@@ -52,7 +52,7 @@ echo 1200:1708000 2100:3196000 > /sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,m
 echo 1200:1708000 2100:3196000 > /sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime/spm_freq_map
 
 # cpuset parameters
-echo 0-3 > /dev/cpuset/background/cpus
+echo 0-1 > /dev/cpuset/background/cpus
 echo 0-3 > /dev/cpuset/system-background/cpus
 
 # Turn off scheduler boost at the end
