@@ -325,6 +325,11 @@
     <!-- Whether to select voice/data/sms preference without user confirmation -->
     <bool name="config_voice_data_sms_auto_fallback">true</bool>
 
+     <!--Useful if you want to improve signal reception 
+         gemini3.0: It prioritizes signal stability over noise sensitivity to 
+         keep the UI from flickering.-->
+    <bool name="config_ignoreRssnrSignalLevel">true</bool>
+
     <!-- The default journal mode to use use when Write-Ahead Logging is not active.
          Choices are: OFF, DELETE, TRUNCATE, PERSIST and MEMORY.
          PERSIST may improve performance by reducing how often journal blocks are
