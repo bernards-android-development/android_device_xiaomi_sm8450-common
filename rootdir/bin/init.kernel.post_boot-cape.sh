@@ -55,8 +55,8 @@ echo 15 15 15 15 15 15 15 15 > /proc/sys/walt/sched_util_busy_hyst_cpu_util
 echo 325 > /proc/sys/walt/walt_low_latency_task_threshold
 
 # cpuset parameters
-echo 1-3 > /dev/cpuset/background/cpus
-echo 0-3 > /dev/cpuset/system-background/cpus
+echo 0-2 > /dev/cpuset/background/cpus
+echo 0-2 > /dev/cpuset/system-background/cpus
 
 # Turn off scheduler boost at the end
 echo 0 > /proc/sys/walt/sched_boost
