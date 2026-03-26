@@ -146,17 +146,6 @@ function configure_memory_parameters() {
 	MemTotal=${MemTotalStr:16:8}
 	let RamSizeGB="( $MemTotal / 1048576 ) + 1"
 
-	# MGLRU
-	if [ $RamSizeGB -ge 8 ]; then
-		echo 22 > /proc/sys/vm/anon_min_ratio
-		echo 3 > /proc/sys/vm/clean_min_ratio
-		echo 8 > /proc/sys/vm/clean_low_ratio
-	else
-		echo 20 > /proc/sys/vm/anon_min_ratio
-		echo 3 > /proc/sys/vm/clean_min_ratio
-		echo 10 > /proc/sys/vm/clean_low_ratio
-	fi
-
 	# Set the min_free_kbytes to standard kernel value
 	if [ $RamSizeGB -ge 8 ]; then
 		echo 11584 > /proc/sys/vm/min_free_kbytes
