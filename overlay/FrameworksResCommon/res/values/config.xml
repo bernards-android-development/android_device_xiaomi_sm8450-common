@@ -325,7 +325,6 @@
     <!-- Whether to select voice/data/sms preference without user confirmation -->
     <bool name="config_voice_data_sms_auto_fallback">true</bool>
 
-<<<<<<< HEAD
      <!--Useful if you want to improve signal reception 
          gemini3.0: It prioritizes signal stability over noise sensitivity to 
          keep the UI from flickering.-->
