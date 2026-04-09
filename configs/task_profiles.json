@@ -1,0 +1,154 @@
+{
+  "Attributes": [
+    {
+      "Name": "LowCapacityCPUs",
+      "Controller": "cpuset",
+      "File": "background/cpus"
+    },
+    {
+      "Name": "HighCapacityCPUs",
+      "Controller": "cpuset",
+      "File": "foreground/cpus"
+    },
+    {
+      "Name": "HighCapacityWICPUs",
+      "Controller": "cpuset",
+      "File": "foreground_window/cpus"
+    },
+    {
+      "Name": "SvpCPUs",
+      "Controller": "cpuset",
+      "File": "svp/cpus"
+    },
+    {
+      "Name": "MaxCapacityCPUs",
+      "Controller": "cpuset",
+      "File": "top-app/cpus"
+    },
+    {
+      "Name": "MemStats",
+      "Controller": "memory",
+      "File": "memory.stat"
+    },
+    {
+      "Name": "MemLimit",
+      "Controller": "memory",
+      "File": "memory.limit_in_bytes",
+      "FileV2": "memory.max"
+    },
+    {
+      "Name": "MemSoftLimit",
+      "Controller": "memory",
+      "File": "memory.soft_limit_in_bytes",
+      "FileV2": "memory.low"
+    },
+    {
+      "Name": "MemSwappiness",
+      "Controller": "memory",
+      "File": "memory.swappiness"
+    },
+    {
+      "Name": "MemUsage",
+      "Controller": "memory",
+      "File": "memory.usage_in_bytes"
+    },
+    {
+      "Name": "MemAndSwapUsage",
+      "Controller": "memory",
+      "File": "memory.memsw.usage_in_bytes"
+    },
+    {
+      "Name": "MemPressureLevel",
+      "Controller": "memory",
+      "File": "memory.pressure_level"
+    },
+    {
+      "Name": "MemCgroupEventControl",
+      "Controller": "memory",
+      "File": "cgroup.event_control"
+    },
+    {
+      "Name": "UClampMin",
+      "Controller": "cpu",
+      "File": "cpu.uclamp.min"
+    },
+    {
+      "Name": "UClampMax",
+      "Controller": "cpu",
+      "File": "cpu.uclamp.max"
+    },
+    {
+      "Name": "UClampLatencySensitive",
+      "Controller": "cpu",
+      "File": "cpu.uclamp.latency_sensitive"
+    },
+    {
+      "Name": "FreezerState",
+      "Controller": "freezer",
+      "File": "cgroup.freeze"
+    },
+    {
+      "Name": "CgroupProcs",
+      "Controller": "cgroup2",
+      "File": "cgroup.procs"
+    }
+  ],
+  "Profiles": [
+    {
+      "Name": "SvpPolicy",
+      "Actions": [
+        {
+          "Name": "JoinCgroup",
+          "Params":
+          {
+            "Controller": "cpuset",
+            "Path": "svp"
+          }
+        },
+        {
+          "Name": "JoinCgroup",
+          "Params":
+          {
+            "Controller": "cpu",
+            "Path": "svp"
+          }
+        },
+        {
+          "Name": "SetAttribute",
+          "Params":
+          {
+            "Name": "UClampMin",
+            "Value": "43",
+            "Optional": "true"
+          }
+        },
+        {
+          "Name": "SetAttribute",
+          "Params":
+          {
+            "Name": "UClampMax",
+            "Value": "100",
+            "Optional": "true"
+          }
+        },
+        {
+          "Name": "SetSchedulerPolicy",
+          "Params":
+          {
+            "Policy": "SCHED_RR",
+            "Priority": "1"
+          }
+        },
+        {
+          "Name": "SetAttribute",
+          "Params":
+          {
+            "Name": "UClampLatencySensitive",
+            "Value": "1",
+            "Optional": "true"
+          }
+        }
+      ]
+    }
+  ]
+}
