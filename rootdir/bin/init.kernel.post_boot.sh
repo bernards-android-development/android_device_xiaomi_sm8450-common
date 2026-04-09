@@ -158,7 +158,44 @@ function configure_memory_parameters() {
 	fi
 }
 
+function configure_sched_parameters() {
+	echo 200000 > /proc/sys/kernel/sched_migration_cost_ns
+	echo 2000000 > /proc/sys/kernel/sched_min_granularity_ns
+	echo 1 > /proc/sys/kernel/sched_rr_timeslice_ms
+
+	# Setup cpu.shares & cpu.uclamp to throttle background groups
+	# bg
+	echo 1024 > /dev/cpuctl/background/cpu.shares
+	echo 0 > /dev/cpuctl/background/cpu.uclamp.min
+	echo 20 > /dev/cpuctl/background/cpu.uclamp.max
+	# sysbg
+	echo 2048 > /dev/cpuctl/system-background/cpu.shares
+	echo 1 > /dev/cpuctl/system-background/cpu.uclamp.min
+	echo 40 > /dev/cpuctl/system-background/cpu.uclamp.max
+	# top-app
+	echo 20480 > /dev/cpuctl/top-app/cpu.shares
+	echo 1 > /dev/cpuctl/top-app/cpu.uclamp.min
+	# dex2oat
+	echo 512 > /dev/cpuctl/dex2oat/cpu.shares
+	echo 60 > /dev/cpuctl/dex2oat/cpu.uclamp.max
+	echo 0 > /dev/cpuctl/dex2oat/cpu.uclamp.min
+	# fg
+	echo 20480 > /dev/cpuctl/foreground/cpu.shares
+	# systemui
+	echo 20480 > /dev/cpuctl/systemui/cpu.shares
+	echo 10 > /dev/cpuctl/systemui/cpu.uclamp.min
+	# svp
+	echo 20480 > /dev/cpuctl/svp/cpu.shares
+	echo 1 > /dev/cpuctl/svp/cpu.uclamp.latency_sensitive
+	# other
+	echo 20480 > /dev/cpuctl/camera-daemon/cpu.shares
+	echo 20480 > /dev/cpuctl/system/cpu.shares
+	echo 20480 > /dev/cpuctl/nnapi-hal/cpu.shares
+	echo 20480 > /dev/cpuctl/rt/cpu.shares
+}
+
 configure_memory_parameters
+configure_sched_parameters
 
 if [ -f /sys/devices/soc0/chip_family ]; then
 	chipfamily=`cat /sys/devices/soc0/chip_family`
