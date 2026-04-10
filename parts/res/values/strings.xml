@@ -48,10 +48,8 @@
     <string name="refresh_summary">Set the maximum refresh rate for a specific application</string>
     <string name="refresh_default">Default</string>
     <string name="refresh_60">60Hz</string>
-    <string name="refresh_90">90Hz</string>
     <string name="refresh_120">120Hz</string>
     <string name="refresh_60_land">60Hz on Landscape</string>
-    <string name="refresh_90_land">90Hz on Landscape</string>
     <string name="refresh_120_land">120Hz on Landscape</string>
 
     <!-- Clear Speaker -->

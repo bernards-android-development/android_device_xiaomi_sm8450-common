@@ -101,7 +101,6 @@ public class RefreshService extends Service {
                 }
                 // Check if it's a landscape mode state
                 if ((state == RefreshUtils.STATE_60_LAND || 
-                     state == RefreshUtils.STATE_90_LAND || 
                      state == RefreshUtils.STATE_120_LAND) && mRefreshUtils.isAppInList) {
                     mRefreshUtils.checkOrientationAndSetRate(foregroundApp);
                 }
