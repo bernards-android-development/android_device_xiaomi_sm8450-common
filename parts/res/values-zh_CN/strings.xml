@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2020 The LineageOS Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Xiaomi Settings -->
+    <string name="app_title">小米设置</string>
+    <string name="tile_add">添加磁贴</string>
+    <string name="tile_added">磁贴已添加</string>
+    <string name="tile_not_added">磁贴未添加</string>
+    <string name="tile_already_added">磁贴已存在</string>
+    <string name="tile_on">开启</string>
+    <string name="tile_off">关闭</string>
+
+    <!-- Thermal profiles -->
+    <string name="thermal_title">温控配置</string>
+    <string name="thermal_enable">使用温控配置</string>
+    <string name="thermal_summary">针对不同应用的温控策略配置</string>
+    <string name="thermal_apps_title">应用列表</string>
+    <string name="thermal_loading">加载中...</string>
+    <string name="thermal_default">默认</string>
+    <string name="thermal_benchmark">跑分模式</string>
+    <string name="thermal_browser">浏览器</string>
+    <string name="thermal_camera">相机</string>
+    <string name="thermal_dialer">拨号器</string>
+    <string name="thermal_gaming">游戏模式</string>
+    <string name="thermal_navigation">导航</string>
+    <string name="thermal_streaming">流媒体</string>
+    <string name="thermal_video">视频播放</string>
+    <string name="thermal_reset">恢复默认设置</string>
+    <string name="thermal_reset_message">确定要重置所有应用的温控配置吗？</string>
+
+    <!-- Per-app refresh rate -->
+    <string name="refresh_title">应用专属刷新率</string>
+    <string name="refresh_summary">为特定应用设置最大刷新率</string>
+    <string name="refresh_default">默认</string>
+    <string name="refresh_60">60Hz</string>
+    <string name="refresh_120">120Hz</string>
+    <string name="refresh_60_land">横屏 60Hz</string>
+    <string name="refresh_120_land">横屏 120Hz</string>
+
+    <!-- Clear Speaker -->
+    <string name="clear_speaker_title">清理扬声器</string>
+    <string name="clear_speaker_summary">播放30秒音频以清理扬声器灰尘</string>
+    <string name="clear_speaker_description">如果发现扬声器被少量灰尘堵塞，请运行此功能一到两次。请将媒体音量调至最大。\n\n如果扬声器堵塞严重，请在运行此功能时（2-5次）并同时将手机扬声器朝下轻轻摇晃。</string>
+
+    <!-- Saturation -->
+    <string name="saturation_title">显示饱和度</string>
+    <string name="saturation_summary">调节屏幕色彩饱和度</string>
+    <string name="saturation_footer_summary">如果在显示设置中更改了色彩模式，将会覆盖当前的饱和度设置，需要重新应用。</string>
+
+    <!-- Image preview -->
+    <string name="image_preview_content_description">预览</string>
+    <string name="image_preview_next_page_content_description">下一页</string>
+    <string name="image_preview_previous_page_content_description">上一页</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">数值: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">默认值</string>
+    <string name="custom_seekbar_default_value_to_set">默认值: <xliff:g id="v">%s</xliff:g>\n长按以设置</string>
+    <string name="custom_seekbar_default_value_is_set">默认值已设置</string>
+</resources>
