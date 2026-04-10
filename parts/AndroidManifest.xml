@@ -33,10 +33,6 @@
 
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
 
-    <uses-sdk
-        android:minSdkVersion="24"
-        android:targetSdkVersion="30" />
-
     <application
         android:label="@string/app_title"
         android:persistent="true"
