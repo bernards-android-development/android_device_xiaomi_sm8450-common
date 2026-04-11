@@ -118,17 +118,22 @@ public final class RefreshUtils {
                     mHandler.removeCallbacks(mPendingRotationTask);
                 }
 
-                mPendingRotationTask = () -> {
-                    int finalOrientation = mContext.getResources().getConfiguration().orientation;
-                    boolean finalIsLandscape = (finalOrientation == Configuration.ORIENTATION_LANDSCAPE);
-                    
-                    if (finalIsLandscape != isLandscape) {
-                        isLandscape = finalIsLandscape;
-                        adjustRefreshRateForOrientation(packageName);
-                    }
-                };
+                if (!newIsLandscape) {
+                    isLandscape = finalIsLandscape;
+                    adjustRefreshRateForOrientation(packageName);
+                } else {
+                    mPendingRotationTask = () -> {
+                        int finalOrientation = mContext.getResources().getConfiguration().orientation;
+                        boolean finalIsLandscape = (finalOrientation == Configuration.ORIENTATION_LANDSCAPE);
+                        
+                        if (finalIsLandscape != isLandscape) {
+                            isLandscape = finalIsLandscape;
+                            adjustRefreshRateForOrientation(packageName);
+                        }
+                    };
 
-                mHandler.postDelayed(mPendingRotationTask, 300);
+                    mHandler.postDelayed(mPendingRotationTask, 768);
+                }
             }
         };
 
