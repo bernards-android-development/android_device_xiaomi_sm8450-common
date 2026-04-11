@@ -119,7 +119,7 @@ public final class RefreshUtils {
                 }
 
                 if (!newIsLandscape) {
-                    isLandscape = finalIsLandscape;
+                    isLandscape = newIsLandscape;
                     adjustRefreshRateForOrientation(packageName);
                 } else {
                     mPendingRotationTask = () -> {
