@@ -118,7 +118,7 @@
           "Params":
           {
             "Name": "UClampMin",
-            "Value": "50",
+            "Value": "53",
             "Optional": "true"
           }
         },
