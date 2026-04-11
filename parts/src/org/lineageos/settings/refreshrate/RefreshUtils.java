@@ -132,7 +132,7 @@ public final class RefreshUtils {
                 int currentOrientation = mContext.getResources().getConfiguration().orientation;
                 boolean newIsLandscape = (currentOrientation == Configuration.ORIENTATION_LANDSCAPE);
                 if (newIsLandscape != isLandscape) {
-                    isLandscape = finalIsLandscape;
+                    isLandscape = newIsLandscape;
                     adjustRefreshRateForOrientation(packageName);
                 }
             }
@@ -182,11 +182,6 @@ public final class RefreshUtils {
         if (mDisplayManager != null && mDisplayListener != null) {
             mDisplayManager.unregisterDisplayListener(mDisplayListener);
             mDisplayListener = null;
-        }
-        
-        if (mPendingRotationTask != null) {
-            mHandler.removeCallbacks(mPendingRotationTask);
-            mPendingRotationTask = null;
         }
     }
 
