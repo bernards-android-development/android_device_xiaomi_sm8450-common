@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,13 +19,13 @@ package org.lineageos.settings.refreshrate;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.hardware.display.DisplayManager;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.UserHandle;
-import android.view.Display;
-
 import android.provider.Settings;
 import android.util.Log;
-import android.view.OrientationEventListener;
-import android.content.res.Configuration;
 import androidx.preference.PreferenceManager;
 
 public final class RefreshUtils {
@@ -58,12 +58,19 @@ public final class RefreshUtils {
 
     private SharedPreferences mSharedPrefs;
 
-    private OrientationEventListener orientationListener;
+    // 替换为 DisplayManager 的组件
+    private DisplayManager mDisplayManager;
+    private DisplayManager.DisplayListener mDisplayListener;
+    private Handler mHandler;
+    private Runnable mPendingRotationTask;
+    
     private boolean isLandscape = false;
 
     protected RefreshUtils(Context context) {
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         mContext = context;
+        mHandler = new Handler(Looper.getMainLooper());
+        mDisplayManager = (DisplayManager) mContext.getSystemService(Context.DISPLAY_SERVICE);
     }
 
     public static void startService(Context context) {
@@ -88,32 +95,49 @@ public final class RefreshUtils {
         return Settings.System.getFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, REFRESH_STATE_DEFAULT);
     }
     
-    private void initializeOrientationListener(String packageName) {
-        if (orientationListener != null) {
-            orientationListener.disable();
+    private void initializeDisplayListener(String packageName) {
+        if (mDisplayListener != null) {
+            disableDisplayListener();
         }
 
-        orientationListener = new OrientationEventListener(mContext) {
+        mDisplayListener = new DisplayManager.DisplayListener() {
             @Override
-            public void onOrientationChanged(int orientation) {
-                if (orientation == ORIENTATION_UNKNOWN) {
-                    return;
-                }
+            public void onDisplayAdded(int displayId) {}
 
+            @Override
+            public void onDisplayRemoved(int displayId) {}
+
+            @Override
+            public void onDisplayChanged(int displayId) {
                 int currentOrientation = mContext.getResources().getConfiguration().orientation;
                 boolean newIsLandscape = (currentOrientation == Configuration.ORIENTATION_LANDSCAPE);
-                if (newIsLandscape != isLandscape) {
-                    isLandscape = newIsLandscape;
-                    adjustRefreshRateForOrientation(packageName);
+                if (newIsLandscape == isLandscape) {
+                    return;
                 }
+                if (mPendingRotationTask != null) {
+                    mHandler.removeCallbacks(mPendingRotationTask);
+                }
+
+                mPendingRotationTask = () -> {
+                    int finalOrientation = mContext.getResources().getConfiguration().orientation;
+                    boolean finalIsLandscape = (finalOrientation == Configuration.ORIENTATION_LANDSCAPE);
+                    
+                    if (finalIsLandscape != isLandscape) {
+                        isLandscape = finalIsLandscape;
+                        adjustRefreshRateForOrientation(packageName);
+                    }
+                };
+
+                mHandler.postDelayed(mPendingRotationTask, 300);
             }
         };
 
-        if (orientationListener.canDetectOrientation()) {
-            orientationListener.enable();
-        } else {
-            orientationListener.disable();
+        if (mDisplayManager != null) {
+            mDisplayManager.registerDisplayListener(mDisplayListener, mHandler);
         }
+
+        int currentOrientation = mContext.getResources().getConfiguration().orientation;
+        isLandscape = (currentOrientation == Configuration.ORIENTATION_LANDSCAPE);
     }
 
     private void adjustRefreshRateForOrientation(String packageName) {
@@ -152,10 +176,15 @@ public final class RefreshUtils {
         }
     }
 
-    private void disableOrientationListener() {
-        if (orientationListener != null) {
-            orientationListener.disable();
-            orientationListener = null;
+    private void disableDisplayListener() {
+        if (mDisplayManager != null && mDisplayListener != null) {
+            mDisplayManager.unregisterDisplayListener(mDisplayListener);
+            mDisplayListener = null;
+        }
+        
+        if (mPendingRotationTask != null) {
+            mHandler.removeCallbacks(mPendingRotationTask);
+            mPendingRotationTask = null;
         }
     }
 
@@ -170,25 +199,25 @@ public final class RefreshUtils {
             modes = value.split(":");
 
             if (modes[0].contains(packageName + ",")) { // 60Hz
-                disableOrientationListener();
+                disableDisplayListener();
                 maxRate = REFRESH_STATE_60;
                 minRate = REFRESH_STATE_60;
                 isAppInList = true;
             } else if (modes[1].contains(packageName + ",")) { // 120Hz
-                disableOrientationListener();
+                disableDisplayListener();
                 maxRate = REFRESH_STATE_120;
                 minRate = REFRESH_STATE_120;
                 isAppInList = true;
             } else if (modes[2].contains(packageName + ",")) { // 60Hz in landscape
-                initializeOrientationListener(packageName);
+                initializeDisplayListener(packageName);
                 isAppInList = true;
                 return;
             } else if (modes[3].contains(packageName + ",")) { // 120Hz in landscape
-                initializeOrientationListener(packageName);
+                initializeDisplayListener(packageName);
                 isAppInList = true;
                 return;
             } else { // default
-                disableOrientationListener();
+                disableDisplayListener();
                 maxRate = defaultMaxRate;
                 minRate = defaultMinRate;
             }
