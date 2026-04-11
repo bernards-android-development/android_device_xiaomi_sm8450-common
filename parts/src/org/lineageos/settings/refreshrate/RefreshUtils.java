@@ -58,7 +58,6 @@ public final class RefreshUtils {
 
     private SharedPreferences mSharedPrefs;
 
-    // 替换为 DisplayManager 的组件
     private DisplayManager mDisplayManager;
     private DisplayManager.DisplayListener mDisplayListener;
     private Handler mHandler;
@@ -84,7 +83,7 @@ public final class RefreshUtils {
             mPendingLowerRateTask = null;
         }
 
-        float currentPeakRate = Settings.System.getFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, REFRESH_STATE_DEFAULT);
+        float currentPeakRate = getUserMaxRefreshRate();
         if (peakRate < currentPeakRate) {
             mPendingLowerRateTask = () -> {
                 Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, peakRate);
