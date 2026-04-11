@@ -62,7 +62,7 @@ public final class RefreshUtils {
     private DisplayManager mDisplayManager;
     private DisplayManager.DisplayListener mDisplayListener;
     private Handler mHandler;
-    private Runnable mPendingRotationTask;
+    private Runnable mPendingLowerRateTask;
     
     private boolean isLandscape = false;
 
@@ -76,6 +76,26 @@ public final class RefreshUtils {
     public static void startService(Context context) {
         context.startServiceAsUser(new Intent(context, RefreshService.class),
                 UserHandle.CURRENT);
+    }
+
+    private void applyRefreshRate(float peakRate, float minRate) {
+        if (mPendingLowerRateTask != null) {
+            mHandler.removeCallbacks(mPendingLowerRateTask);
+            mPendingLowerRateTask = null;
+        }
+
+        float currentPeakRate = Settings.System.getFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, REFRESH_STATE_DEFAULT);
+        if (peakRate < currentPeakRate) {
+            mPendingLowerRateTask = () -> {
+                Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, peakRate);
+                Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, minRate);
+                mPendingLowerRateTask = null;
+            };
+            mHandler.postDelayed(mPendingLowerRateTask, 1000);
+        } else {
+            Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, peakRate);
+            Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, minRate);
+        }
     }
 
     private void writeValue(String profiles) {
@@ -111,28 +131,9 @@ public final class RefreshUtils {
             public void onDisplayChanged(int displayId) {
                 int currentOrientation = mContext.getResources().getConfiguration().orientation;
                 boolean newIsLandscape = (currentOrientation == Configuration.ORIENTATION_LANDSCAPE);
-                if (newIsLandscape == isLandscape) {
-                    return;
-                }
-                if (mPendingRotationTask != null) {
-                    mHandler.removeCallbacks(mPendingRotationTask);
-                }
-
-                if (!newIsLandscape) {
-                    isLandscape = newIsLandscape;
+                if (newIsLandscape != isLandscape) {
+                    isLandscape = finalIsLandscape;
                     adjustRefreshRateForOrientation(packageName);
-                } else {
-                    mPendingRotationTask = () -> {
-                        int finalOrientation = mContext.getResources().getConfiguration().orientation;
-                        boolean finalIsLandscape = (finalOrientation == Configuration.ORIENTATION_LANDSCAPE);
-                        
-                        if (finalIsLandscape != isLandscape) {
-                            isLandscape = finalIsLandscape;
-                            adjustRefreshRateForOrientation(packageName);
-                        }
-                    };
-
-                    mHandler.postDelayed(mPendingRotationTask, 768);
                 }
             }
         };
@@ -152,19 +153,15 @@ public final class RefreshUtils {
 
         if (state == STATE_60_LAND) {
             if (isLandscape) {
-                Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, REFRESH_STATE_60_LAND);
-                Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, REFRESH_STATE_60_LAND);
+                applyRefreshRate(REFRESH_STATE_60_LAND, REFRESH_STATE_60_LAND);
             } else {
-                Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, defaultMinRate);
-                Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, defaultMaxRate);
+                applyRefreshRate(defaultMaxRate, defaultMinRate);
             }
         } else if (state == STATE_120_LAND) {
             if (isLandscape) {
-                Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, REFRESH_STATE_120_LAND);
-                Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, REFRESH_STATE_120_LAND);
+                applyRefreshRate(REFRESH_STATE_120_LAND, REFRESH_STATE_120_LAND);
             } else {
-                Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, defaultMinRate);
-                Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, defaultMaxRate);
+                applyRefreshRate(defaultMaxRate, defaultMinRate);
             }
         }
     }
@@ -227,18 +224,16 @@ public final class RefreshUtils {
                 minRate = defaultMinRate;
             }
         }
-        Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, minRate);
-        Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, maxRate);
+
+        applyRefreshRate(maxRate, minRate);
     }
 
     private void setLandscapeModeRefreshRate(String packageName) {
         int state = getStateForPackage(packageName);
         if (state == STATE_60_LAND) {
-            Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, REFRESH_STATE_60_LAND);
-            Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, REFRESH_STATE_60_LAND);
+            applyRefreshRate(REFRESH_STATE_60_LAND, REFRESH_STATE_60_LAND);
         } else if (state == STATE_120_LAND) {
-            Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, REFRESH_STATE_120_LAND);
-            Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, REFRESH_STATE_120_LAND);
+            applyRefreshRate(REFRESH_STATE_120_LAND, REFRESH_STATE_120_LAND);
         }
         // For all other states, do nothing (let setRefreshRate handle it)
     }
@@ -247,8 +242,7 @@ public final class RefreshUtils {
         int state = getStateForPackage(packageName);
         if (state == STATE_60_LAND || state == STATE_120_LAND) {
             // Portrait: use default (system default)
-            Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, defaultMaxRate);
-            Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, defaultMinRate);
+            applyRefreshRate(defaultMaxRate, defaultMinRate);
         }
         // For all other states, do nothing (let setRefreshRate handle it)
     }
