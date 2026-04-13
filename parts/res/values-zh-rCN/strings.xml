@@ -25,24 +25,6 @@
     <string name="tile_on">开启</string>
     <string name="tile_off">关闭</string>
 
-    <!-- Thermal profiles -->
-    <string name="thermal_title">温控配置</string>
-    <string name="thermal_enable">使用温控配置</string>
-    <string name="thermal_summary">针对不同应用的温控策略配置</string>
-    <string name="thermal_apps_title">应用列表</string>
-    <string name="thermal_loading">加载中...</string>
-    <string name="thermal_default">默认</string>
-    <string name="thermal_benchmark">跑分模式</string>
-    <string name="thermal_browser">浏览器</string>
-    <string name="thermal_camera">相机</string>
-    <string name="thermal_dialer">拨号器</string>
-    <string name="thermal_gaming">游戏模式</string>
-    <string name="thermal_navigation">导航</string>
-    <string name="thermal_streaming">流媒体</string>
-    <string name="thermal_video">视频播放</string>
-    <string name="thermal_reset">恢复默认设置</string>
-    <string name="thermal_reset_message">确定要重置所有应用的温控配置吗？</string>
-
     <!-- Per-app refresh rate -->
     <string name="refresh_title">应用专属刷新率</string>
     <string name="refresh_summary">为特定应用设置最大刷新率</string>
