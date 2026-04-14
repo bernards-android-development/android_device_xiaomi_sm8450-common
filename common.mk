@@ -48,6 +48,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_SHIPPING_API_LEVEL := 32
 BOARD_SHIPPING_API_LEVEL := 31
 
+# dex2oat
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    Settings \
+    NexusLauncher
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    pm.dexopt.boot-after-ota=speed-profile
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@7.1-impl:64 \
@@ -145,6 +153,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     hardware/qcom-caf/sm8450/display/config/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml
+
+# egl
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.egl.blobcache.multifile_limit=67108864
 
 # DRM
 PRODUCT_PACKAGES += \
