@@ -179,8 +179,9 @@ function configure_sched_parameters() {
 	echo 512 > /dev/cpuctl/dex2oat/cpu.shares
 	echo 60 > /dev/cpuctl/dex2oat/cpu.uclamp.max
 	echo 0 > /dev/cpuctl/dex2oat/cpu.uclamp.min
-	# fg
+	# fg & fg window
 	echo 20480 > /dev/cpuctl/foreground/cpu.shares
+	echo 20480 > /dev/cpuctl/foreground_window/cpu.shares
 	# systemui
 	echo 20480 > /dev/cpuctl/systemui/cpu.shares
 	echo 10 > /dev/cpuctl/systemui/cpu.uclamp.min
