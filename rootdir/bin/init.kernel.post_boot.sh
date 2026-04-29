@@ -164,6 +164,7 @@ function configure_sched_parameters() {
 	echo 200000 > /proc/sys/kernel/sched_migration_cost_ns
 	echo 1000000 > /proc/sys/kernel/sched_min_granularity_ns
 	echo 1 > /proc/sys/kernel/sched_rr_timeslice_ms
+	echo 0 > /proc/sys/kernel/sched_util_clamp_min
 
 	# Setup cpu.shares & cpu.uclamp to throttle background groups
 	# bg
