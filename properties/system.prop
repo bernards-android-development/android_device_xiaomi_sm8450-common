@@ -7,6 +7,9 @@ persist.vendor.cne.feature=1
 # Display
 debug.sf.frame_rate_multiple_threshold=120
 
+# perf anim
+persist.sys.activity_anim_perf_override=true
+
 # Media
 media.stagefright.thumbnail.prefer_hw_codecs=true
 
