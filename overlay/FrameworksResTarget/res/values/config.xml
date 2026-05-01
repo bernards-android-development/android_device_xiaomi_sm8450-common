@@ -29,6 +29,11 @@
         <item>/system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk</item>
     </string-array>
 
+    <!-- Maximum memory that PinnerService will pin for apps expressed
+         as a percentage of total device memory [0,100].
+         Example: 10, means 10% of total memory will be the maximum pinned memory -->
+     <integer name="config_pinnerMaxPinnedMemoryPercentage">12</integer>
+
     <!-- Whether the device enable the standalone (SA) mode of 5G NR.-->
     <bool name="config_telephony5gStandalone">true</bool>
 
