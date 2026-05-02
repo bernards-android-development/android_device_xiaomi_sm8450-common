@@ -205,7 +205,6 @@ ro.vendor.sensors.xiaomi.single_tap=true
 
 # Scroll Optimizer
 persist.sys.perf.scroll_opt=true
-persist.sys.perf.scroll_opt.heavy_app=1
 
 # SSR
 persist.vendor.ssr.restart_level=ALL_ENABLE
