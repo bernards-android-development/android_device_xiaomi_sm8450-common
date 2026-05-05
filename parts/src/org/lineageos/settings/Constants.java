@@ -21,4 +21,17 @@ public class Constants {
     // Saturation
     public static final String KEY_SATURATION = "saturation";
     public static final String KEY_SATURATION_PREVIEW = "saturation_preview";
+
+    // HyperCharge
+    public static final String KEY_HYPERCHARGE_STATUS = "hypercharge_status";
+    public static final String KEY_HYPERCHARGE_LIMIT = "hypercharge_limit";
+
+    public static final String NODE_CONSTANT_CHARGE_CURRENT = "/sys/class/power_supply/battery/constant_charge_current";
+    public static final String NODE_FASTCHG_MODE = "/sys/class/qcom-battery/fastchg_mode";
+
+    // mA Values (12300000 = 67W)
+    public static final String CHARGE_LIMIT_67W = "12300000";
+    public static final String CHARGE_LIMIT_50W = "9200000";
+    public static final String CHARGE_LIMIT_33W = "6000000";
+    public static final String CHARGE_LIMIT_18W = "4500000";
 }

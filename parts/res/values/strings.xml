@@ -77,4 +77,34 @@
     <string name="custom_seekbar_default_value_to_set">Default value: <xliff:g id="v">%s</xliff:g>\nLong
           tap to set</string>
     <string name="custom_seekbar_default_value_is_set">Default value is set</string>
+
+    <!-- HyperCharge Strings -->
+    <string name="hypercharge_title">HyperCharge Settings</string>
+    <string name="hypercharge_tile_label">HyperCharge</string>
+    <string name="hypercharge_main_switch_title">Enable HyperCharge</string>
+    <string name="hypercharge_settings_category">Charging Configuration</string>
+    <string name="hypercharge_limit_title">Charging Speed Limit</string>
+
+    <!-- HyperCharge QS Tile speed subtitles -->
+    <string name="hypercharge_speed_67w">67W</string>
+    <string name="hypercharge_speed_50w">50W</string>
+    <string name="hypercharge_speed_33w">33W</string>
+    <string name="hypercharge_speed_18w">18W</string>
+    
+    <string name="hypercharge_description_title">About HyperCharge Control</string>
+    <string name="hypercharge_description_summary">HyperCharge provides extreme charging speeds but generates significant heat, which can accelerate battery wear and reduce long-term lifespan. \n\n• ON (120W): Service is stopped — the kernel controls charging at full factory speed.\n• ON (other speed): Service enforces your selected speed limit.\n• OFF: Service runs and enforces a 33W protection limit to reduce battery wear and heat.\n\nNote: This service only intervenes when a Xiaomi HyperCharge power brick is detected.</string>
+
+    <string-array name="hypercharge_limit_entries">
+        <item>67W (Unlimited)</item>
+        <item>50W (Fast)</item>
+        <item>33W (Balanced)</item>
+        <item>18W (Slow/Safe)</item>
+    </string-array>
+
+    <string-array name="hypercharge_limit_values">
+        <item>12300000</item>
+        <item>9200000</item>
+        <item>6000000</item>
+        <item>4500000</item>
+    </string-array>
 </resources>

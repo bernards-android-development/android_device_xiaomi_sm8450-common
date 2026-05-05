@@ -51,6 +51,8 @@ on boot
     chmod 0664 /sys/class/qcom-battery/fastchg_mode
     chown system system /sys/class/qcom-battery/quick_charge_type
     chmod 0664 /sys/class/qcom-battery/quick_charge_type
+    chown system system /sys/class/power_supply/battery/constant_charge_current
+    chmod 0664 /sys/class/power_supply/battery/constant_charge_current
 
     # Xiaomi touch
     chown system system /dev/xiaomi-touch

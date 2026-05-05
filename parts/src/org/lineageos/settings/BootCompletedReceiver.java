@@ -32,6 +32,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Display.HdrCapabilities;
 
+import org.lineageos.settings.hypercharge.HyperChargeUtils;
 import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.refreshrate.RefreshUtils;
 
@@ -79,6 +80,9 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         
         // Start Refresh Rate Services
         RefreshUtils.startService(context);
+
+        // Start HyperCharge Services
+        HyperChargeUtils.startService(context);
     }
 
     private void overrideHdrTypes(Context context) {

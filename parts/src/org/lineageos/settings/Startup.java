@@ -61,6 +61,8 @@ public class Startup extends BroadcastReceiver {
         applySaturation(seekBarValue);
     }
 
+    
+
     private void applySaturation(int seekBarValue) {
         Log.d(TAG, "Applying saturation: " + seekBarValue);
 

@@ -39,3 +39,7 @@ genfscon sysfs /devices/virtual/touch/touch_dev/bump_sample_rate u:object_r:vend
 genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-02/c42d000.qcom,spmi:qcom,pm8350c@2:qcom,flash_led@ee00/leds/led:torch_0/brightness u:object_r:sysfs_torch:s0
 genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-02/c42d000.qcom,spmi:qcom,pm8350c@2:qcom,flash_led@ee00/leds/led:torch_0/max_brightness u:object_r:sysfs_torch:s0
 genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-02/c42d000.qcom,spmi:qcom,pm8350c@2:qcom,flash_led@ee00/leds/led:switch_2/brightness u:object_r:sysfs_torch:s0
+
+# Charger
+genfscon sysfs /class/power_supply/battery/constant_charge_current u:object_r:vendor_sysfs_power_supply:s0
+genfscon sysfs /class/qcom-battery/fastchg_mode u:object_r:vendor_sysfs_power_supply:s0

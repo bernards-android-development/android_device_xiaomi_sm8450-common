@@ -16,60 +16,90 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Xiaomi Settings -->
-    <string name="app_title">小米设置</string>
-    <string name="tile_add">添加磁贴</string>
-    <string name="tile_added">磁贴已添加</string>
-    <string name="tile_not_added">磁贴未添加</string>
-    <string name="tile_already_added">磁贴已存在</string>
-    <string name="tile_on">开启</string>
-    <string name="tile_off">关闭</string>
+     <!-- Xiaomi Settings -->
+     <string name="app_title">小米设置</string>
+     <string name="tile_add">添加磁贴</string>
+     <string name="tile_added">磁贴已添加</string>
+     <string name="tile_not_added">磁贴未添加</string>
+     <string name="tile_already_added">磁贴已存在</string>
+     <string name="tile_on">开启</string>
+     <string name="tile_off">关闭</string>
 
-    <!-- Thermal profiles -->
-    <string name="thermal_title">温控配置</string>
-    <string name="thermal_enable">使用温控配置</string>
-    <string name="thermal_summary">针对不同应用的温控策略配置</string>
-    <string name="thermal_apps_title">应用列表</string>
-    <string name="thermal_loading">加载中...</string>
-    <string name="thermal_default">默认</string>
-    <string name="thermal_benchmark">跑分模式</string>
-    <string name="thermal_browser">浏览器</string>
-    <string name="thermal_camera">相机</string>
-    <string name="thermal_dialer">拨号器</string>
-    <string name="thermal_gaming">游戏模式</string>
-    <string name="thermal_navigation">导航</string>
-    <string name="thermal_streaming">流媒体</string>
-    <string name="thermal_video">视频播放</string>
-    <string name="thermal_reset">恢复默认设置</string>
-    <string name="thermal_reset_message">确定要重置所有应用的温控配置吗？</string>
+     <!-- Thermal profiles -->
+     <string name="thermal_title">温控配置</string>
+     <string name="thermal_enable">使用温控配置</string>
+     <string name="thermal_summary">针对不同应用的温控策略配置</string>
+     <string name="thermal_apps_title">应用列表</string>
+     <string name="thermal_loading">加载中...</string>
+     <string name="thermal_default">默认</string>
+     <string name="thermal_benchmark">跑分模式</string>
+     <string name="thermal_browser">浏览器</string>
+     <string name="thermal_camera">相机</string>
+     <string name="thermal_dialer">拨号器</string>
+     <string name="thermal_gaming">游戏模式</string>
+     <string name="thermal_navigation">导航</string>
+     <string name="thermal_streaming">流媒体</string>
+     <string name="thermal_video">视频播放</string>
+     <string name="thermal_reset">恢复默认设置</string>
+     <string name="thermal_reset_message">确定要重置所有应用的温控配置吗？</string>
 
-    <!-- Per-app refresh rate -->
-    <string name="refresh_title">应用专属刷新率</string>
-    <string name="refresh_summary">为特定应用设置最大刷新率</string>
-    <string name="refresh_default">默认</string>
-    <string name="refresh_60">60Hz</string>
-    <string name="refresh_120">120Hz</string>
-    <string name="refresh_60_land">横屏 60Hz</string>
-    <string name="refresh_120_land">横屏 120Hz</string>
+     <!-- Per-app refresh rate -->
+     <string name="refresh_title">应用专属刷新率</string>
+     <string name="refresh_summary">为特定应用设置最大刷新率</string>
+     <string name="refresh_default">默认</string>
+     <string name="refresh_60">60Hz</string>
+     <string name="refresh_120">120Hz</string>
+     <string name="refresh_60_land">横屏 60Hz</string>
+     <string name="refresh_120_land">横屏 120Hz</string>
 
-    <!-- Clear Speaker -->
-    <string name="clear_speaker_title">清理扬声器</string>
-    <string name="clear_speaker_summary">播放30秒音频以清理扬声器灰尘</string>
-    <string name="clear_speaker_description">如果发现扬声器被少量灰尘堵塞，请运行此功能一到两次。请将媒体音量调至最大。\n\n如果扬声器堵塞严重，请在运行此功能时（2-5次）并同时将手机扬声器朝下轻轻摇晃。</string>
+     <!-- Clear Speaker -->
+     <string name="clear_speaker_title">清理扬声器</string>
+     <string name="clear_speaker_summary">播放30秒音频以清理扬声器灰尘</string>
+     <string name="clear_speaker_description">如果发现扬声器被少量灰尘堵塞，请运行此功能一到两次。请将媒体音量调至最大。\n\n如果扬声器堵塞严重，请在运行此功能时（2-5次）并同时将手机扬声器朝下轻轻摇晃。</string>
 
-    <!-- Saturation -->
-    <string name="saturation_title">显示饱和度</string>
-    <string name="saturation_summary">调节屏幕色彩饱和度</string>
-    <string name="saturation_footer_summary">如果在显示设置中更改了色彩模式，将会覆盖当前的饱和度设置，需要重新应用。</string>
+     <!-- Saturation -->
+     <string name="saturation_title">显示饱和度</string>
+     <string name="saturation_summary">调节屏幕色彩饱和度</string>
+     <string name="saturation_footer_summary">如果在显示设置中更改了色彩模式，将会覆盖当前的饱和度设置，需要重新应用。</string>
 
-    <!-- Image preview -->
-    <string name="image_preview_content_description">预览</string>
-    <string name="image_preview_next_page_content_description">下一页</string>
-    <string name="image_preview_previous_page_content_description">上一页</string>
+     <!-- Image preview -->
+     <string name="image_preview_content_description">预览</string>
+     <string name="image_preview_next_page_content_description">下一页</string>
+     <string name="image_preview_previous_page_content_description">上一页</string>
 
-    <!-- Custom seekbar -->
-    <string name="custom_seekbar_value">数值: <xliff:g id="v">%s</xliff:g></string>
-    <string name="custom_seekbar_default_value">默认值</string>
-    <string name="custom_seekbar_default_value_to_set">默认值: <xliff:g id="v">%s</xliff:g>\n长按以设置</string>
-    <string name="custom_seekbar_default_value_is_set">默认值已设置</string>
+     <!-- Custom seekbar -->
+     <string name="custom_seekbar_value">数值: <xliff:g id="v">%s</xliff:g></string>
+     <string name="custom_seekbar_default_value">默认值</string>
+     <string name="custom_seekbar_default_value_to_set">默认值: <xliff:g id="v">%s</xliff:g>\n长按以设置</string>
+     <string name="custom_seekbar_default_value_is_set">默认值已设置</string>
+
+     <!-- HyperCharge Strings -->
+     <string name="hypercharge_title">快充控制</string>
+     <string name="hypercharge_tile_label">设置小米快充</string>
+     <string name="hypercharge_main_switch_title">小米快充</string>
+     <string name="hypercharge_settings_category">充电配置</string>
+     <string name="hypercharge_limit_title">充电速度限制</string>
+
+     <!-- HyperCharge QS Tile speed subtitles -->
+     <string name="hypercharge_speed_67w">67W</string>
+     <string name="hypercharge_speed_50w">50W</string>
+     <string name="hypercharge_speed_33w">33W</string>
+     <string name="hypercharge_speed_18w">18W</string>
+
+     <string name="hypercharge_description_title">关于快充控制</string>
+     <string name="hypercharge_description_summary">快充提供极致的充电速度，但会产生大量热量，这可能会加速电池损耗并缩短长期使用寿命。\n\n• 开启 (67W): 服务停止 —— 内核将以出厂全速控制充电。\n• 开启 (其他速度): 服务将强制执行您选择的速度限制。\n• 关闭: 服务运行并强制执行 33W 保护限制，以减少电池损耗和发热。\n\n注意：仅当检测到快充充电器时，此服务才会介入。</string>
+
+     <string-array name="hypercharge_limit_entries">
+          <item>67W (无限制)</item>
+          <item>50W (快速)</item>
+          <item>33W (均衡)</item>
+          <item>18W (慢速/安全)</item>
+     </string-array>
+
+     <string-array name="hypercharge_limit_values">
+          <item>12300000</item>
+          <item>9200000</item>
+          <item>6000000</item>
+          <item>4500000</item>
+     </string-array>
 </resources>

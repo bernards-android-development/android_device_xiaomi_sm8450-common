@@ -12,3 +12,10 @@ allow system_app hal_health_default:binder call;
 allow system_app hal_nfc_default:binder call;
 allow system_app hal_power_default:binder call;
 allow system_app vendor_hal_keymint_qti:binder call;
+allow system_app vendor_sysfs_sensors:file rw_file_perms;
+
+# Hyper Charging
+allow system_app vendor_sysfs_power_supply:file { read write open setattr getattr };
+allow system_app vendor_sysfs_power_supply:dir search;
+allow system_app vendor_sysfs_battery_supply:file { read write open setattr getattr };
+allow system_app vendor_sysfs_battery_supply:dir search;
