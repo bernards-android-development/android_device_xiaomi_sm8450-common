@@ -28,7 +28,7 @@ public class HyperChargeSettingsFragment extends PreferenceFragment
     private static final String TAG = "HyperChargeSettings";
 
     private MainSwitchPreference mMainSwitch;
-    private DropDownPreference mLimitPref;
+    private NoHighlightListPreference mLimitPref;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {

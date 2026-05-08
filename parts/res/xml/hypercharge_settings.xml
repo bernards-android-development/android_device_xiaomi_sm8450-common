@@ -16,7 +16,7 @@
     <PreferenceCategory
         android:title="@string/hypercharge_settings_category">
 
-        <DropDownPreference
+        <org.lineageos.settings.hypercharge.NoHighlightListPreference
             android:key="hypercharge_limit"
             android:title="@string/hypercharge_limit_title"
             android:summary="%s"
