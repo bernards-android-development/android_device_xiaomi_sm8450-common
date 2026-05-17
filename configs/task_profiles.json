@@ -192,5 +192,11 @@
         }
       ]
     }
+  ],
+  "AggregateProfiles": [
+    {
+      "Name": "InputPolicy",
+      "Profiles": [ "RealTimeInputScheduling", "HighPerformanceWI", "ProcessCapacityMax", "TimerSlackNormal" ]
+    }
   ]
 }
