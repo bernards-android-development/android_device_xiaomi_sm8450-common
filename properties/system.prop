@@ -16,6 +16,9 @@ media.stagefright.thumbnail.prefer_hw_codecs=true
 # UserFaultFd Move
 dalvik.vm.force_uffd_move=true
 
+# Pinner
+persist.sys.pinner.quota_pct=15
+
 # QTI
 ro.vendor.qti.va_aosp.support=1
 
