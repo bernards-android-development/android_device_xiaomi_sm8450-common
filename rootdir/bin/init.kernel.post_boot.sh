@@ -151,6 +151,9 @@ function configure_memory_parameters() {
 	# Set the min_free_kbytes to standard kernel value
 	if [ $RamSizeGB -ge 8 ]; then
 		echo 11584 > /proc/sys/vm/min_free_kbytes
+		echo 100 > /proc/sys/vm/watermark_scale_factor
+		let extraFree="( $MemTotal / 100 )"
+		echo $extraFree > /proc/sys/vm/extra_free_kbytes
 	elif [ $RamSizeGB -ge 4 ]; then
 		echo 8192 > /proc/sys/vm/min_free_kbytes
 	elif [ $RamSizeGB -ge 2 ]; then
