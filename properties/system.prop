@@ -20,9 +20,9 @@ dalvik.vm.force_uffd_move=true
 persist.sys.pinner.quota_pct=15
 
 # LMK
-ro.lmk.filecache_min_kb=196608
-ro.lmk.kill_timeout_ms=40
-ro.lmk.stall_limit_critical=35
+ro.lmk.kill_timeout_ms=50
+ro.lmk.filecache_min_kb=153600
+ro.lmk.stall_limit_critical=40
 
 # QTI
 ro.vendor.qti.va_aosp.support=1
