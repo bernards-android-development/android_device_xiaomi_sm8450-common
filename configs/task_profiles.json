@@ -195,8 +195,16 @@
   ],
   "AggregateProfiles": [
     {
+      "Name": "SCHED_SP_FOREGROUND",
+      "Profiles": [ "HighPerformance", "ProcessCapacityHigh", "CpuPolicySpread", "HighIoPriority", "TimerSlackNormal" ]
+    },
+    {
+      "Name": "SCHED_SP_TOP_APP",
+      "Profiles": [ "MaxPerformance", "ProcessCapacityMax", "CpuPolicySpread", "HighIoPriority", "TimerSlackNormal" ]
+    },
+    {
       "Name": "InputPolicy",
-      "Profiles": [ "RealTimeInputScheduling", "HighPerformanceWI", "ProcessCapacityMax", "TimerSlackNormal" ]
+      "Profiles": [ "RealTimeInputScheduling", "HighPerformanceWI", "ProcessCapacityHighWI", "CpuPolicySpread", "TimerSlackNormal" ]
     }
   ]
 }
