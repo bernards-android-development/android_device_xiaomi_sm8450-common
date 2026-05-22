@@ -159,7 +159,7 @@ function configure_memory_parameters() {
 		echo 4096 > /proc/sys/vm/min_free_kbytes
 	fi
 
-	echo 150 > /proc/sys/vm/watermark_scale_factor
+	echo 100 > /proc/sys/vm/watermark_scale_factor
 	let extraFree="( $MemTotal / 50 )"
 	echo $extraFree > /proc/sys/vm/extra_free_kbytes
 }
